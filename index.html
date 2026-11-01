@@ -1,0 +1,539 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aditya Sanap</title>
+<meta name="description" content="Portfolio of Aditya Sanap, Frontend Engineer and UI Lead.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Instrument+Sans:wght@400..700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root { color-scheme: light; padding-top: env(safe-area-inset-top, 0px); padding-bottom: env(safe-area-inset-bottom, 0px); }
+body { margin: 0; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+</style>
+<style>
+/* Layout concept: the hero is a browser-inspector box model (margin, border, padding, content) with the name as the content box. Everything else stays quiet: a single column of ruled sections. */
+:root {
+  --bg: #F0F2F7;
+  --surface: #FFFFFF;
+  --ink: #12161F;
+  --muted: #566073;
+  --line: #D3D9E4;
+  --accent: #2748D8;
+  --accent-ink: #FFFFFF;
+  --hl: #F9DC6B;
+  --layer-margin: #F7E3CC;
+  --layer-margin-line: #D9A96B;
+  --layer-border: #F2E8B4;
+  --layer-border-line: #C7B24F;
+  --layer-padding: #D3E8C9;
+  --layer-padding-line: #86B676;
+  --layer-content: #DCE5FB;
+  --layer-content-line: #8AA3EC;
+  --font-display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --font-body: "Instrument Sans", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0D1016;
+    --surface: #151A23;
+    --ink: #E8ECF4;
+    --muted: #9BA4B6;
+    --line: #2A3141;
+    --accent: #8CA4FF;
+    --accent-ink: #0D1016;
+    --hl: #6E5C14;
+    --layer-margin: #33291D;
+    --layer-margin-line: #7A5E36;
+    --layer-border: #35321A;
+    --layer-border-line: #7C7129;
+    --layer-padding: #1E3022;
+    --layer-padding-line: #44713A;
+    --layer-content: #1B2441;
+    --layer-content-line: #4A5FA8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0D1016;
+  --surface: #151A23;
+  --ink: #E8ECF4;
+  --muted: #9BA4B6;
+  --line: #2A3141;
+  --accent: #8CA4FF;
+  --accent-ink: #0D1016;
+  --hl: #6E5C14;
+  --layer-margin: #33291D;
+  --layer-margin-line: #7A5E36;
+  --layer-border: #35321A;
+  --layer-border-line: #7C7129;
+  --layer-padding: #1E3022;
+  --layer-padding-line: #44713A;
+  --layer-content: #1B2441;
+  --layer-content-line: #4A5FA8;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.6;
+  padding-block: 20px 48px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.wrap { max-width: 980px; margin-inline: auto; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+
+/* Header */
+.top {
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+  gap: 12px 24px; padding-bottom: 20px;
+}
+.mark { font-family: var(--font-mono); font-size: 14px; font-weight: 500; text-decoration: none; letter-spacing: 0.02em; }
+.mark span { color: var(--accent); }
+.nav { display: flex; flex-wrap: wrap; gap: 6px 22px; font-family: var(--font-mono); font-size: 13px; }
+.nav a { color: var(--muted); text-decoration: none; padding-block: 4px; border-bottom: 1px solid transparent; }
+.nav a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+
+/* Hero: box model */
+.hero { padding-top: 12px; }
+.layer {
+  position: relative;
+  border-radius: 6px;
+  padding: 38px clamp(12px, 3vw, 26px) clamp(12px, 3vw, 22px);
+}
+.layer > .lbl {
+  position: absolute; top: 9px; left: clamp(12px, 3vw, 22px); right: clamp(12px, 3vw, 22px);
+  display: flex; justify-content: space-between;
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--muted);
+}
+.l-margin { background: var(--layer-margin); border: 1px dashed var(--layer-margin-line); }
+.l-border { background: var(--layer-border); border: 2px solid var(--layer-border-line); }
+.l-padding { background: var(--layer-padding); border: 1px dashed var(--layer-padding-line); }
+.l-content { background: var(--layer-content); border: 1px solid var(--layer-content-line); padding-top: clamp(26px, 5vw, 44px); padding-bottom: clamp(26px, 5vw, 44px); }
+.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); margin: 0 0 10px; }
+h1 {
+  font-family: var(--font-display); font-weight: 700;
+  font-size: clamp(44px, 10vw, 100px); line-height: 0.98; letter-spacing: -0.03em;
+  margin: 0; text-wrap: balance;
+}
+.size { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-top: 16px; }
+
+/* Box model motion: layers fill in from the content box outward, labels follow, numbers count up. Hovering a layer outlines it, like the browser inspector. */
+.l-content { --ld: 0s; }
+.l-padding { --ld: 0.18s; }
+.l-border { --ld: 0.36s; }
+.l-margin { --ld: 0.54s; }
+.hero .layer {
+  outline: 2px solid transparent; outline-offset: -2px;
+  transition: outline-color 0.2s ease;
+  animation: layerIn 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) backwards;
+  animation-delay: var(--ld);
+}
+.hero .layer > .lbl { animation: lblIn 0.5s ease backwards; animation-delay: calc(var(--ld) + 0.35s); }
+.hero .layer:hover:not(:has(.layer:hover)) { outline-color: var(--accent); }
+.hero .layer:hover:not(:has(.layer:hover)) > .lbl { color: var(--ink); }
+.lbl span:last-child { font-variant-numeric: tabular-nums; }
+@keyframes layerIn { from { background-color: transparent; border-color: transparent; } }
+@keyframes lblIn { from { opacity: 0; transform: translateY(-4px); } }
+
+.intro {
+  display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr);
+  gap: 28px 48px; margin-top: 36px; align-items: start;
+}
+.lead { font-size: clamp(19px, 2.4vw, 23px); line-height: 1.5; margin: 0; max-width: 34em; text-wrap: pretty; }
+.lead mark {
+  background: linear-gradient(transparent 56%, var(--hl) 56%);
+  color: inherit; padding: 0 3px; margin: 0 -3px;
+  -webkit-box-decoration-break: clone; box-decoration-break: clone;
+}
+.facts { margin: 0; display: grid; gap: 0; border-top: 1px solid var(--line); }
+.facts div { display: grid; grid-template-columns: 110px minmax(0, 1fr); gap: 12px; padding: 11px 0; border-bottom: 1px solid var(--line); }
+.facts dt { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); padding-top: 3px; }
+.facts dd { margin: 0; font-size: 16px; }
+
+/* Sections */
+section.block { margin-top: 84px; }
+.sec-head { display: flex; align-items: baseline; gap: 16px; margin-bottom: 28px; }
+.sec-head h2 { font-family: var(--font-display); font-weight: 650; font-size: clamp(26px, 4vw, 36px); letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+.sec-head::after { content: ""; flex: 1; height: 1px; background: var(--line); align-self: center; min-width: 20px; }
+
+.job { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 8px 32px; padding: 26px 0; border-top: 1px solid var(--line); }
+.job:last-child { border-bottom: 1px solid var(--line); }
+.when { font-family: var(--font-mono); font-size: 13px; color: var(--muted); padding-top: 6px; }
+.job h3 { font-family: var(--font-display); font-weight: 650; font-size: 23px; letter-spacing: -0.01em; margin: 0; text-wrap: balance; }
+.org { color: var(--accent); font-weight: 600; margin: 2px 0 10px; font-size: 16px; }
+.job h3 + p { margin-top: 8px; }
+.job p { margin: 0; max-width: 38em; color: var(--ink); text-wrap: pretty; }
+.job p + p { margin-top: 10px; }
+.points { margin: 0; padding: 0; list-style: none; display: grid; gap: 10px; max-width: 40em; }
+.points li { position: relative; padding-left: 20px; text-wrap: pretty; }
+.points li::before { content: ""; position: absolute; left: 0; top: 0.78em; width: 9px; height: 2px; background: var(--accent); }
+.tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 0; padding: 0; list-style: none; }
+.tags li, .chips li {
+  font-family: var(--font-mono); font-size: 13px; padding: 4px 10px;
+  border: 1px solid var(--line); border-radius: 4px; background: var(--surface);
+}
+
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 36px 32px; }
+.skills h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin: 0 0 14px; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.note { margin: 14px 0 0; color: var(--muted); font-size: 15px; max-width: 26em; text-wrap: pretty; }
+
+.edu { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 8px 32px; padding: 22px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.edu h3 { font-family: var(--font-display); font-weight: 650; font-size: 21px; margin: 0; letter-spacing: -0.01em; }
+.edu p { margin: 4px 0 0; color: var(--muted); }
+
+.contact-list { display: grid; gap: 0; margin: 0; padding: 0; list-style: none; border-top: 1px solid var(--line); }
+.contact-list li { display: grid; grid-template-columns: 110px minmax(0, 1fr) auto; gap: 12px; align-items: center; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.contact-list .k { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); }
+.contact-list .k { display: flex; align-items: center; gap: 10px; }
+.contact-list .k svg { flex: none; color: var(--accent); }
+.contact-list .v { overflow-wrap: anywhere; }
+.contact-list a.v { text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 4px; }
+.copy { font-family: var(--font-mono); font-size: 12px; background: transparent; color: var(--ink); border: 1px solid var(--line); border-radius: 4px; padding: 5px 10px; cursor: pointer; }
+.copy:hover { border-color: var(--accent); }
+
+footer { margin-top: 84px; padding-top: 18px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+.caret { display: inline-block; width: 0.55ch; height: 1.05em; margin-left: 2px; background: var(--accent); vertical-align: -0.15em; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+
+/* Scroll reveal: script adds .rv to elements below the fold and .in when they enter view. */
+.rv { opacity: 0; transform: translateY(18px); transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.rv.in { opacity: 1; transform: none; }
+
+@media (max-width: 780px) {
+  body { font-size: 16px; }
+  .intro { grid-template-columns: minmax(0, 1fr); }
+  .job, .edu { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .when { padding-top: 0; }
+  .skills { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  section.block { margin-top: 64px; }
+  .contact-list li { grid-template-columns: minmax(0, 1fr) auto; }
+  .contact-list .k { grid-column: 1 / -1; }
+  .facts div { grid-template-columns: 96px minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .caret, .hero .layer, .hero .layer > .lbl { animation: none; } .rv { opacity: 1; transform: none; transition: none; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="mark" href="#top">aditya<span>.</span>sanap</a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills">Skills</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#education">Education</a>
+      <a href="#contact" id="nav-contact" hidden>Contact</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-label="Introduction">
+      <div class="layer l-margin">
+        <div class="lbl"><span>margin</span><span data-n="24">24</span></div>
+        <div class="layer l-border">
+          <div class="lbl"><span>border</span><span data-n="2">2</span></div>
+          <div class="layer l-padding">
+            <div class="lbl"><span>padding</span><span data-n="16">16</span></div>
+            <div class="layer l-content">
+              <div class="lbl"><span>content</span><span>auto</span></div>
+              <p class="eyebrow">Frontend Engineer / UI Lead</p>
+              <h1>Aditya Sanap</h1>
+              <div class="size">3+ years &times; React, TypeScript, Spring Boot</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="intro">
+        <p class="lead">I built and scaled <mark>enterprise web applications</mark> in <mark>React and TypeScript</mark> at Deutsche Bank across 3+ years. I led a team of three, designed <mark>REST and gRPC API integrations</mark> and global state architecture with <mark>Redux Toolkit</mark>, and used AI-assisted tools (<mark>Claude, GitHub Copilot, ChatGPT</mark>) to speed up delivery and testing.</p>
+        <dl class="facts">
+          <div><dt>Now</dt><dd>Associate, Deutsche Bank Group</dd></div>
+          <div><dt>Stack</dt><dd>React, TypeScript, Next.js, Redux Toolkit, MUI</dd></div>
+          <div><dt>Also</dt><dd>Spring Boot, Jenkins, GitHub Actions, Docker</dd></div>
+          <div><dt>AI tools</dt><dd>Claude, GitHub Copilot, ChatGPT</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section class="block" id="experience" aria-labelledby="h-exp">
+      <div class="sec-head"><h2 id="h-exp">Experience</h2></div>
+      <article class="job">
+        <div class="when">Apr 2026 &ndash; Present</div>
+        <div>
+          <h3>Associate</h3>
+          <div class="org">Deutsche Bank Group</div>
+          <p>Led UI development and guided three juniors to deliver with complete ownership.</p>
+          <ul class="tags"><li>TypeScript</li><li>Redux</li><li>AI agents</li></ul>
+        </div>
+      </article>
+      <article class="job">
+        <div class="when">Jun 2023 &ndash; Mar 2026</div>
+        <div>
+          <h3>Senior Analyst</h3>
+          <div class="org">Deutsche Bank Group</div>
+          <ul class="points">
+            <li>Integrated RESTful and third-party APIs and implemented global state management with Redux Toolkit. Used GPT and Claude agents to speed up development and GitHub Copilot for pull request reviews.</li>
+            <li>Migrated shared UI components to an internal Artifactory package registry, standardizing the design system across the application.</li>
+            <li>Worked on the UI deployment pipeline using GitHub Actions, and implemented authentication with an in-house system using the Context API.</li>
+          </ul>
+          <ul class="tags"><li>TypeScript</li><li>Spring Boot</li><li>MUI</li><li>Redux Toolkit</li><li>GitHub Actions</li></ul>
+        </div>
+      </article>
+      <article class="job">
+        <div class="when">Jan 2023 &ndash; May 2023</div>
+        <div>
+          <h3>Summer Intern</h3>
+          <div class="org">Netwin Infosolutions</div>
+          <ul class="points">
+            <li>Built a Jenkins CI/CD pipeline that deployed Spring Boot apps to a remote Tomcat server and sent automated email notifications, using ChatGPT to help draft and refine it.</li>
+            <li>Conducted a proof of concept to determine the most suitable DevOps tools for different system types and project requirements.</li>
+          </ul>
+          <ul class="tags"><li>Jenkins</li><li>CI/CD</li><li>Apache Tomcat</li><li>Spring Boot</li></ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="block" id="projects" aria-labelledby="h-proj">
+      <div class="sec-head"><h2 id="h-proj">Projects</h2></div>
+      <article class="job">
+        <div class="when">MERN stack</div>
+        <div>
+          <h3>Doc Tracker</h3>
+          <p>A portal that automates document approval tracking in colleges. It generates a unique token at the initial approval stage, so students can check real-time document status without repeatedly visiting offices, reducing manual effort and saving time.</p>
+          <ul class="tags"><li>MongoDB</li><li>Express</li><li>React</li><li>Node.js</li></ul>
+        </div>
+      </article>
+    </section>
+
+    <section class="block" id="skills" aria-labelledby="h-skills">
+      <div class="sec-head"><h2 id="h-skills">Skills</h2></div>
+      <div class="skills">
+        <div>
+          <h3>Frontend</h3>
+          <ul class="chips"><li>React</li><li>TypeScript</li><li>Next.js</li><li>Redux Toolkit</li><li>React Query</li><li>MUI</li><li>Webpack</li><li>Vite</li><li>Storybook</li></ul>
+        </div>
+        <div>
+          <h3>APIs and backend</h3>
+          <ul class="chips"><li>REST APIs</li><li>gRPC</li><li>Spring Boot</li><li>Java</li><li>SQL</li></ul>
+          <p class="note">Integrated REST and gRPC APIs from the frontend to the backend.</p>
+        </div>
+        <div>
+          <h3>DevOps</h3>
+          <ul class="chips"><li>Git</li><li>GitHub Actions</li><li>Jenkins</li><li>Docker</li><li>CI/CD</li><li>Apache Tomcat</li></ul>
+          <p class="note">Built a Jenkins deployment pipeline as an intern and a UI deployment pipeline with GitHub Actions.</p>
+        </div>
+        <div>
+          <h3>Quality and performance</h3>
+          <ul class="chips"><li>Core Web Vitals</li><li>Accessibility (WCAG)</li><li>Code splitting</li><li>Lazy loading</li></ul>
+        </div>
+        <div>
+          <h3>AI-assisted development</h3>
+          <ul class="chips"><li>Claude</li><li>GitHub Copilot</li><li>ChatGPT</li></ul>
+          <p class="note">Used these tools to speed up delivery, testing and pull request reviews.</p>
+        </div>
+        <div>
+          <h3>Team</h3>
+          <ul class="chips"><li>UI leadership</li><li>Mentoring</li><li>End-to-end delivery</li><li>BA, QA and UX collaboration</li></ul>
+          <p class="note">Led three junior developers on UI. Handled delivery at feature level from requirement to release, and worked directly with the BA, QA and UX teams.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="achievements" aria-labelledby="h-ach">
+      <div class="sec-head"><h2 id="h-ach">Achievements</h2></div>
+      <article class="job">
+        <div class="when">Deutsche Bank</div>
+        <div>
+          <h3>Led UI development for more than 2 years</h3>
+          <p>Delivered multiple releases, gaining strong exposure to leadership, strategic decision-making and direct engagement with technical product owners.</p>
+        </div>
+      </article>
+      <article class="job">
+        <div class="when">Smart India Hackathon</div>
+        <div>
+          <h3>Semifinalist</h3>
+          <p>Developed a food waste management solution to redirect surplus food to farmers.</p>
+        </div>
+      </article>
+    </section>
+
+    <section class="block" id="education" aria-labelledby="h-edu">
+      <div class="sec-head"><h2 id="h-edu">Education</h2></div>
+      <div class="edu">
+        <div class="when">2019 &ndash; 2023</div>
+        <div>
+          <h3>B.Tech, Computer Science and Engineering</h3>
+          <p>Walchand College of Engineering, Sangli</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="contact" aria-labelledby="h-contact" hidden>
+      <div class="sec-head"><h2 id="h-contact">Contact</h2></div>
+      <ul class="contact-list" id="contact-list"></ul>
+    </section>
+  </main>
+
+  <footer>
+    <span>Aditya Sanap</span>
+    <span>Frontend Engineer / UI Lead</span>
+  </footer>
+</div>
+
+<script>
+// Leave a value empty to hide that row. The Contact section appears when any row has a value.
+var CONTACT = {
+  email: "aditya.sanap1718@gmail.com",
+  phone: "+919421243938",
+  linkedin: "https://www.linkedin.com/in/aditya-sanap-44ahs",
+  github: "https://github.com/adit242"
+};
+
+(function () {
+  function svg(inner) {
+    return '<svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + inner + '</svg>';
+  }
+  var ICON = {
+    email: svg('<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/>'),
+    phone: svg('<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A15 15 0 0 1 3 6a2 2 0 0 1 2-2z"/>'),
+    linkedin: svg('<rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 11v6M8 7.5v.01M12 17v-6M12 14a3 3 0 0 1 6 0v3"/>'),
+    github: svg('<path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>')
+  };
+  var rows = [
+    { key: "email", label: "Email", icon: ICON.email, href: function (v) { return "mailto:" + v; }, show: function (v) { return v; } },
+    { key: "phone", label: "Mobile", icon: ICON.phone, href: function (v) { return "tel:" + v; }, show: function (v) { return v.replace(/^\+91(\d{5})(\d{5})$/, "+91 $1 $2"); } },
+    { key: "linkedin", label: "LinkedIn", icon: ICON.linkedin, href: function (v) { return v; }, show: function (v) { return v.replace(/^https?:\/\//, "").replace(/\/$/, ""); } },
+    { key: "github", label: "GitHub", icon: ICON.github, href: function (v) { return v; }, show: function (v) { return v.replace(/^https?:\/\//, "").replace(/\/$/, ""); } }
+  ];
+  var list = document.getElementById("contact-list");
+  var count = 0;
+  rows.forEach(function (r) {
+    var val = (CONTACT[r.key] || "").trim();
+    if (!val) return;
+    count++;
+    var li = document.createElement("li");
+    var k = document.createElement("span");
+    k.className = "k"; k.innerHTML = r.icon + "<span>" + r.label + "</span>";
+    var v = document.createElement("a");
+    v.className = "v"; v.href = r.href(val); v.textContent = r.show(val);
+    if (r.key !== "email" && r.key !== "phone") { v.target = "_blank"; v.rel = "noopener"; }
+    var b = document.createElement("button");
+    b.type = "button"; b.className = "copy"; b.textContent = "Copy";
+    b.addEventListener("click", function () {
+      var done = function () { b.textContent = "Copied"; setTimeout(function () { b.textContent = "Copy"; }, 1500); };
+      try {
+        navigator.clipboard.writeText(val).then(done, function () { b.textContent = "Select text"; });
+      } catch (e) { b.textContent = "Select text"; }
+    });
+    li.appendChild(k); li.appendChild(v); li.appendChild(b);
+    list.appendChild(li);
+  });
+  if (count) {
+    document.getElementById("contact").hidden = false;
+    document.getElementById("nav-contact").hidden = false;
+  }
+})();
+
+// Reveal sections each time they scroll into view, and hide them again when they leave. The hidden state is added by this script only, so without it the page reads in full.
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) return;
+  var els = Array.prototype.slice.call(document.querySelectorAll(".sec-head, .job, .skills > div, .edu, .contact-list li, footer"));
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      e.target.classList.toggle("in", e.isIntersecting);
+    });
+  }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+  els.forEach(function (el) {
+    if (el.matches(".skills > div, .contact-list li")) {
+      var idx = Array.prototype.indexOf.call(el.parentNode.children, el);
+      el.style.transitionDelay = (Math.min(idx, 5) * 0.07) + "s";
+    }
+    el.classList.add("rv");
+    io.observe(el);
+  });
+})();
+
+// Count the box model numbers up from 0 once each label has faded in.
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+  var delays = { padding: 0.18, border: 0.36, margin: 0.54 };
+  Array.prototype.forEach.call(document.querySelectorAll(".lbl [data-n]"), function (el) {
+    var n = Number(el.getAttribute("data-n"));
+    var name = el.parentNode.firstChild.textContent;
+    var wait = ((delays[name] || 0) + 0.35) * 1000;
+    el.textContent = "0";
+    setTimeout(function () {
+      var start = performance.now();
+      (function step(now) {
+        var p = Math.min(1, (now - start) / 800);
+        el.textContent = Math.round(n * (1 - Math.pow(1 - p, 3)));
+        if (p < 1) requestAnimationFrame(step);
+      })(start);
+    }, wait);
+  });
+})();
+
+// Typewriter on the two mono lines inside the hero's content box. Plays once.
+(function () {
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+  var jobs = Array.prototype.slice.call(document.querySelectorAll(".eyebrow, .size")).map(function (el) {
+    var full = el.textContent.trim();
+    el.style.minHeight = el.offsetHeight + "px";
+    el.textContent = "";
+    var sr = document.createElement("span");
+    sr.className = "sr"; sr.textContent = full;
+    var typed = document.createElement("span");
+    typed.setAttribute("aria-hidden", "true");
+    var caret = document.createElement("span");
+    caret.className = "caret"; caret.setAttribute("aria-hidden", "true");
+    el.appendChild(sr); el.appendChild(typed);
+    return { el: el, full: full, typed: typed, caret: caret };
+  });
+  var j = 0;
+  function next() {
+    if (j >= jobs.length) {
+      setTimeout(function () {
+        var c = jobs[jobs.length - 1].caret;
+        if (c.parentNode) c.parentNode.removeChild(c);
+      }, 2500);
+      return;
+    }
+    var job = jobs[j++];
+    var i = 0;
+    job.el.appendChild(job.caret);
+    (function tick() {
+      i++;
+      job.typed.textContent = job.full.slice(0, i);
+      if (i < job.full.length) {
+        setTimeout(tick, 38);
+      } else {
+        if (j < jobs.length && job.caret.parentNode) job.caret.parentNode.removeChild(job.caret);
+        setTimeout(next, 250);
+      }
+    })();
+  }
+  setTimeout(next, 350);
+})();
+</script>
+</body>
+</html>
